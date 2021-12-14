@@ -80,9 +80,9 @@ class SE3Matrix(_base.SEMatrixBase):
         rot_jac = cls.RotationType.left_jacobian(phi)
 
         if rot_jac.dim() < 3:
-            rot_jac.unsqueeze_(dim=0)
+            rot_jac = rot_jac.unsqueeze(dim=0)
         if rho.dim() < 3:
-            rho.unsqueeze_(dim=2)
+            rho = rho.unsqueeze(dim=2)
 
         trans = torch.bmm(rot_jac, rho).squeeze_()
 
